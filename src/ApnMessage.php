@@ -117,6 +117,13 @@ class ApnMessage
     protected $mutableContent;
 
     /**
+     * Provide this key with a string value for the coalescing of similar notifications.
+     *
+     * @var string
+     */
+    protected $collapseId;
+
+    /**
      * Create an instance of APN message.
      *
      * @param  string|null  $title
@@ -356,6 +363,19 @@ class ApnMessage
     public function threadId($threadId)
     {
         $this->threadId = $threadId;
+
+        return $this;
+    }
+    
+    /**
+     * Set a collapse ID.
+     *
+     * @param  string  $collapseId
+     * @return $this
+     */
+    public function collapseId($collapseId)
+    {
+        $this->collapseId = $collapseId;
 
         return $this;
     }
