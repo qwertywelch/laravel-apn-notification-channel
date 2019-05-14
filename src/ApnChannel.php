@@ -114,6 +114,10 @@ class ApnChannel
         if ($message->threadId) {
             $payload->setThreadId($message->threadId);
         }
+        
+        if ($message->collapseId) {
+            $payload->setCollapseId($message->collapseId);
+        }
 
         try {
             foreach ($message->custom as $key => $value) {
