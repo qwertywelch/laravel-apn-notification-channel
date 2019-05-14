@@ -74,7 +74,13 @@ class ApnChannel
         $deviceTokens = $deviceTokens instanceof Arrayable ? $deviceTokens->toArray() : $deviceTokens;
 
         return collect($deviceTokens)->map(function ($deviceToken) use ($message) {
-            return new PushokNotification($this->payload($message), $deviceToken);
+            $notif = new PushokNotification($this->payload($message), $deviceToken);
+        
+            if ($message->collapseId) {
+                $notif->setCollapseId($message->collapseId);
+            }
+            
+            return $notif;
         })->all();
     }
 
@@ -113,10 +119,6 @@ class ApnChannel
 
         if ($message->threadId) {
             $payload->setThreadId($message->threadId);
-        }
-        
-        if ($message->collapseId) {
-            $payload->setCollapseId($message->collapseId);
         }
 
         try {
