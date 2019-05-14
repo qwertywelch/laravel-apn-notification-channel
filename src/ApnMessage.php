@@ -54,6 +54,13 @@ class ApnMessage
     public $threadId;
 
     /**
+     * Provide this key with a string value for the coalescing of similar notifications.
+     *
+     * @var string
+     */
+    public $collapseId;
+    
+    /**
      * Additional data of the notification.
      *
      * @var array
@@ -115,13 +122,6 @@ class ApnMessage
      * @var bool
      */
     protected $mutableContent;
-
-    /**
-     * Provide this key with a string value for the coalescing of similar notifications.
-     *
-     * @var string
-     */
-    protected $collapseId;
 
     /**
      * Create an instance of APN message.
